@@ -4,6 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
 /*
  * Design system definition.
  *
@@ -59,42 +64,69 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-plum: var(--plum);
+  --color-plum-deep: var(--plum-deep);
+  --color-plum-soft: var(--plum-soft);
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-foreground: var(--burgundy-foreground);
+  --color-sand: var(--sand);
+  --color-sand-deep: var(--sand-deep);
+  --color-gold: var(--gold);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --radius: 0.75rem;
+  --plum: oklch(0.33 0.115 313);
+  --plum-deep: oklch(0.22 0.085 312);
+  --plum-soft: oklch(0.52 0.115 312);
+  --burgundy: oklch(0.42 0.145 18);
+  --burgundy-foreground: oklch(0.97 0.015 85);
+  --sand: oklch(0.965 0.017 85);
+  --sand-deep: oklch(0.925 0.026 82);
+  --gold: oklch(0.76 0.11 78);
+
+  --background: oklch(0.973 0.014 85);
+  --foreground: oklch(0.24 0.06 310);
+  --card: oklch(0.995 0.006 85);
+  --card-foreground: oklch(0.24 0.06 310);
+  --popover: oklch(0.995 0.006 85);
+  --popover-foreground: oklch(0.24 0.06 310);
+  --primary: oklch(0.33 0.115 313);
+  --primary-foreground: oklch(0.975 0.014 85);
+  --secondary: oklch(0.925 0.026 82);
+  --secondary-foreground: oklch(0.3 0.09 313);
+  --muted: oklch(0.938 0.019 84);
+  --muted-foreground: oklch(0.5 0.035 310);
+  --accent: oklch(0.42 0.145 18);
+  --accent-foreground: oklch(0.97 0.015 85);
+  --destructive: oklch(0.52 0.19 25);
+  --destructive-foreground: oklch(0.98 0.01 85);
+  --border: oklch(0.885 0.025 82);
+  --input: oklch(0.885 0.025 82);
+  --ring: oklch(0.52 0.115 312);
+
+  --gradient-hero: linear-gradient(
+    135deg,
+    oklch(0.22 0.085 312) 0%,
+    oklch(0.31 0.115 316) 55%,
+    oklch(0.4 0.14 20) 100%
+  );
+  --gradient-sand: linear-gradient(180deg, oklch(0.973 0.014 85) 0%, oklch(0.94 0.024 82) 100%);
+  --shadow-soft: 0 1px 2px oklch(0.24 0.06 310 / 0.06), 0 10px 30px -14px oklch(0.24 0.06 310 / 0.22);
+  --shadow-lift: 0 18px 44px -20px oklch(0.24 0.06 310 / 0.38);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sidebar: oklch(0.955 0.018 85);
+  --sidebar-foreground: oklch(0.24 0.06 310);
+  --sidebar-primary: oklch(0.33 0.115 313);
+  --sidebar-primary-foreground: oklch(0.975 0.014 85);
+  --sidebar-accent: oklch(0.925 0.026 82);
+  --sidebar-accent-foreground: oklch(0.3 0.09 313);
+  --sidebar-border: oklch(0.885 0.025 82);
+  --sidebar-ring: oklch(0.52 0.115 312);
 }
 
 .dark {
@@ -140,5 +172,31 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility surface-hero {
+  background-image: var(--gradient-hero);
+}
+
+@utility surface-sand {
+  background-image: var(--gradient-sand);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
 }

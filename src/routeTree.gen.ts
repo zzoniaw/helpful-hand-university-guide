@@ -10,33 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DopasowanieRouteImport } from './routes/dopasowanie'
+import { Route as PoradyRouteImport } from './routes/porady'
+import { Route as UczelnieIndexRouteImport } from './routes/uczelnie.index'
+import { Route as UczelnieUniIdRouteImport } from './routes/uczelnie.$uniId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DopasowanieRoute = DopasowanieRouteImport.update({
+  id: '/dopasowanie',
+  path: '/dopasowanie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoradyRoute = PoradyRouteImport.update({
+  id: '/porady',
+  path: '/porady',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UczelnieIndexRoute = UczelnieIndexRouteImport.update({
+  id: '/uczelnie/',
+  path: '/uczelnie/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UczelnieUniIdRoute = UczelnieUniIdRouteImport.update({
+  id: '/uczelnie/$uniId',
+  path: '/uczelnie/$uniId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dopasowanie': typeof DopasowanieRoute
+  '/porady': typeof PoradyRoute
+  '/uczelnie/$uniId': typeof UczelnieUniIdRoute
+  '/uczelnie/': typeof UczelnieIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dopasowanie': typeof DopasowanieRoute
+  '/porady': typeof PoradyRoute
+  '/uczelnie/$uniId': typeof UczelnieUniIdRoute
+  '/uczelnie': typeof UczelnieIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dopasowanie': typeof DopasowanieRoute
+  '/porady': typeof PoradyRoute
+  '/uczelnie/$uniId': typeof UczelnieUniIdRoute
+  '/uczelnie/': typeof UczelnieIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/dopasowanie' | '/porady' | '/uczelnie/$uniId' | '/uczelnie/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/dopasowanie' | '/porady' | '/uczelnie/$uniId' | '/uczelnie'
+  id:
+    | '__root__'
+    | '/'
+    | '/dopasowanie'
+    | '/porady'
+    | '/uczelnie/$uniId'
+    | '/uczelnie/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DopasowanieRoute: typeof DopasowanieRoute
+  PoradyRoute: typeof PoradyRoute
+  UczelnieUniIdRoute: typeof UczelnieUniIdRoute
+  UczelnieIndexRoute: typeof UczelnieIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +95,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dopasowanie': {
+      id: '/dopasowanie'
+      path: '/dopasowanie'
+      fullPath: '/dopasowanie'
+      preLoaderRoute: typeof DopasowanieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/porady': {
+      id: '/porady'
+      path: '/porady'
+      fullPath: '/porady'
+      preLoaderRoute: typeof PoradyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uczelnie/': {
+      id: '/uczelnie/'
+      path: '/uczelnie'
+      fullPath: '/uczelnie/'
+      preLoaderRoute: typeof UczelnieIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uczelnie/$uniId': {
+      id: '/uczelnie/$uniId'
+      path: '/uczelnie/$uniId'
+      fullPath: '/uczelnie/$uniId'
+      preLoaderRoute: typeof UczelnieUniIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DopasowanieRoute: DopasowanieRoute,
+  PoradyRoute: PoradyRoute,
+  UczelnieUniIdRoute: UczelnieUniIdRoute,
+  UczelnieIndexRoute: UczelnieIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

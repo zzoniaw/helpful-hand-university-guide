@@ -263,6 +263,16 @@ function MatchPage() {
           <button
             type="button"
             onClick={() => {
+              update(DEMO_PROFILE);
+              setShowResults(true);
+            }}
+            className="inline-flex items-center gap-2 rounded-xl border border-input px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+          >
+            <Wand2 className="size-4" /> Tryb demo
+          </button>
+          <button
+            type="button"
+            onClick={() => {
               update(EMPTY_PROFILE);
               setShowResults(false);
             }}

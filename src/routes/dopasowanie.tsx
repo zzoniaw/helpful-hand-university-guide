@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Lightbulb, RotateCcw, Sparkles } from "lucide-react";
+import { Lightbulb, RotateCcw, Sparkles, Wand2 } from "lucide-react";
 import { MatchCard } from "@/components/match-card";
 import { PageShell } from "@/components/site-layout";
 import { FIELDS, SUBJECTS, type Field, type Level, type SubjectId } from "@/data/universities";
 import {
   ACHIEVEMENTS,
+  DEMO_PROFILE,
   EMPTY_PROFILE,
   adviceFor,
   matchProfile,

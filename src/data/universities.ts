@@ -1,3 +1,5 @@
+export type Level = "podstawowy" | "rozszerzony";
+
 export type SubjectId =
   | "polski"
   | "polski-podst"

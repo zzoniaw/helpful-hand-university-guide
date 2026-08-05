@@ -44,6 +44,22 @@ export const EMPTY_PROFILE: CandidateProfile = {
   types: ["publiczna", "niepubliczna"],
 };
 
+export const DEMO_PROFILE: CandidateProfile = {
+  scores: [
+    { subject: "biologia", level: "rozszerzony", score: 88 },
+    { subject: "chemia", level: "rozszerzony", score: 85 },
+    { subject: "matematyka", level: "rozszerzony", score: 78 },
+    { subject: "angielski", level: "rozszerzony", score: 92 },
+    { subject: "polski", level: "podstawowy", score: 70 },
+  ],
+  achievements: ["olimpiada-finalista", "certyfikat-c1", "wolontariat"],
+  careerGoal: "lekarz",
+  fields: ["medyczny"],
+  interests: "biologia, pomaganie ludziom, medycyna, zdrowie",
+  countries: ["Polska", "zagranica"],
+  types: ["publiczna", "niepubliczna"],
+};
+
 export type Chance = "wysoka" | "dobra" | "graniczna" | "niska";
 
 export const CHANCE_LABEL: Record<Chance, string> = {

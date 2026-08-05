@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Lightbulb, RotateCcw, Sparkles } from "lucide-react";
+import { Lightbulb, RotateCcw, Sparkles, Wand2 } from "lucide-react";
 import { MatchCard } from "@/components/match-card";
 import { PageShell } from "@/components/site-layout";
 import { FIELDS, SUBJECTS, type Field, type Level, type SubjectId } from "@/data/universities";
 import {
   ACHIEVEMENTS,
+  DEMO_PROFILE,
   EMPTY_PROFILE,
   adviceFor,
   matchProfile,
@@ -258,6 +259,16 @@ function MatchPage() {
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Sparkles className="size-4" /> Pokaż dopasowane kierunki
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              update(DEMO_PROFILE);
+              setShowResults(true);
+            }}
+            className="inline-flex items-center gap-2 rounded-xl border border-input px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+          >
+            <Wand2 className="size-4" /> Tryb demo
           </button>
           <button
             type="button"

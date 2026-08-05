@@ -1,6 +1,7 @@
 import {
   ALL_PROGRAMS,
   SUBJECT_LABEL,
+  subjectVariants,
   type Field,
   type Level,
   type Program,
@@ -49,8 +50,11 @@ export const DEMO_PROFILE: CandidateProfile = {
     { subject: "biologia", level: "rozszerzony", score: 88 },
     { subject: "chemia", level: "rozszerzony", score: 85 },
     { subject: "matematyka", level: "rozszerzony", score: 78 },
+    { subject: "matematyka-podst", level: "podstawowy", score: 90 },
     { subject: "angielski", level: "rozszerzony", score: 92 },
-    { subject: "polski", level: "podstawowy", score: 70 },
+    { subject: "angielski-podst", level: "podstawowy", score: 96 },
+    { subject: "polski-podst", level: "podstawowy", score: 70 },
+    { subject: "biznes", level: "rozszerzony", score: 74 },
   ],
   achievements: ["olimpiada-finalista", "certyfikat-c1", "wolontariat"],
   careerGoal: "lekarz",
@@ -134,7 +138,8 @@ export function matchProfile(profile: CandidateProfile): MatchResult[] {
     let weightSum = 0;
     for (const requirement of program.requirements) {
       weightSum += requirement.weight;
-      const best = bestValue(profile.scores, requirement.subjects, requirement.level);
+      const allowed = requirement.subjects.flatMap((s) => subjectVariants(s));
+      const best = bestValue(profile.scores, allowed, requirement.level);
       const name =
         requirement.label ?? requirement.subjects.map((s) => SUBJECT_LABEL[s]).join(" / ");
       if (!best) {

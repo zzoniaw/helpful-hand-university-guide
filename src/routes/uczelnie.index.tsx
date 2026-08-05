@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArrowRight, MapPin, Search } from "lucide-react";
+import { ArrowRight, MapPin, Search, Sparkles, Star } from "lucide-react";
 import { PageShell } from "@/components/site-layout";
 import { FIELDS, UNIVERSITIES, type Field } from "@/data/universities";
 
@@ -129,6 +129,13 @@ function UniversitiesPage() {
                 <MapPin className="size-4" /> {u.city}, {u.country} · uczelnia {u.type}
               </p>
               <p className="mt-3 flex-1 text-sm text-muted-foreground">{u.about}</p>
+              {u.programs.some((p) => p.requirements.some((r) => r.subjects.includes("biznes"))) && (
+                <span className="surface-gold mt-3 inline-flex items-center gap-1.5 self-start rounded-lg border px-2.5 py-1 text-xs font-semibold">
+                  <Sparkles className="twinkle size-3.5" />
+                  Przyjmuje biznes i zarządzanie
+                  <Star className="twinkle size-3" style={{ animationDelay: "0.6s" }} />
+                </span>
+              )}
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {u.programs.map((p) => (
                   <span key={p.id} className="rounded-md bg-secondary/70 px-2 py-1 text-xs">

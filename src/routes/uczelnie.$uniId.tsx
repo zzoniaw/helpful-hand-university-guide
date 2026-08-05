@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ExternalLink, GraduationCap, Info, MapPin, Star, Users } from "lucide-react";
+import { ArrowLeft, ExternalLink, GraduationCap, Info, MapPin, Sparkles, Star, Users } from "lucide-react";
 import { PageShell } from "@/components/site-layout";
 import { SUBJECT_LABEL, UNIVERSITIES, type University } from "@/data/universities";
 
@@ -26,6 +26,11 @@ export const Route = createFileRoute("/uczelnie/$uniId")({
 
 function UniversityPage() {
   const { university }: { university: University } = Route.useLoaderData();
+  const acceptsBusiness = (programId: string) =>
+    university.programs
+      .find((p) => p.id === programId)!
+      .requirements.some((r) => r.subjects.includes("biznes"));
+  const businessPrograms = university.programs.filter((p) => acceptsBusiness(p.id));
 
   return (
     <PageShell>
@@ -50,6 +55,14 @@ function UniversityPage() {
             </span>
           </p>
           <p className="mt-4 max-w-3xl text-primary-foreground/85">{university.about}</p>
+          {businessPrograms.length > 0 && (
+            <p className="surface-gold mt-5 inline-flex flex-wrap items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold">
+              <Sparkles className="twinkle size-4" />
+              <Star className="twinkle size-3" style={{ animationDelay: "0.5s" }} />
+              Biznes i zarządzanie uznawany w rekrutacji na:{" "}
+              {businessPrograms.map((p) => p.name).join(", ")}
+            </p>
+          )}
           <a
             href={university.website}
             target="_blank"
@@ -94,6 +107,13 @@ function UniversityPage() {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h3 className="text-2xl text-primary">{program.name}</h3>
+                  {acceptsBusiness(program.id) && (
+                    <span className="surface-gold mt-2 inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-semibold">
+                      <Sparkles className="twinkle size-3.5" />
+                      Biznes i zarządzanie (matura 2027/2028)
+                      <Star className="twinkle size-3" style={{ animationDelay: "0.6s" }} />
+                    </span>
+                  )}
                   <p className="mt-1 text-sm text-muted-foreground">
                     {program.degree} · język: {program.language} · {program.tuition}
                   </p>

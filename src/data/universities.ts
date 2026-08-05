@@ -1,7 +1,10 @@
 export type SubjectId =
   | "polski"
+  | "polski-podst"
   | "matematyka"
+  | "matematyka-podst"
   | "angielski"
+  | "angielski-podst"
   | "biologia"
   | "chemia"
   | "fizyka"
@@ -12,12 +15,32 @@ export type SubjectId =
   | "niemiecki"
   | "hiszpanski"
   | "francuski"
-  | "filozofia";
+  | "filozofia"
+  | "biznes";
 
-export const SUBJECTS: { id: SubjectId; label: string }[] = [
-  { id: "polski", label: "Język polski" },
-  { id: "matematyka", label: "Matematyka" },
-  { id: "angielski", label: "Język angielski" },
+export type SubjectMeta = {
+  id: SubjectId;
+  label: string;
+  /** Wiersz z zablokowanym poziomem – dla przedmiotów obowiązkowych zdawanych na dwóch poziomach. */
+  fixedLevel?: Level;
+  /** Wyróżnienie graficzne (nowy przedmiot maturalny). */
+  highlight?: boolean;
+  note?: string;
+};
+
+export const SUBJECTS: SubjectMeta[] = [
+  { id: "polski", label: "Język polski – rozszerzenie", fixedLevel: "rozszerzony" },
+  { id: "polski-podst", label: "Język polski – podstawa", fixedLevel: "podstawowy" },
+  { id: "matematyka", label: "Matematyka – rozszerzenie", fixedLevel: "rozszerzony" },
+  { id: "matematyka-podst", label: "Matematyka – podstawa", fixedLevel: "podstawowy" },
+  { id: "angielski", label: "Język angielski – rozszerzenie", fixedLevel: "rozszerzony" },
+  { id: "angielski-podst", label: "Język angielski – podstawa", fixedLevel: "podstawowy" },
+  {
+    id: "biznes",
+    label: "Biznes i zarządzanie",
+    highlight: true,
+    note: "Nowy przedmiot maturalny od roku 2027/2028",
+  },
   { id: "biologia", label: "Biologia" },
   { id: "chemia", label: "Chemia" },
   { id: "fizyka", label: "Fizyka" },
@@ -31,12 +54,25 @@ export const SUBJECTS: { id: SubjectId; label: string }[] = [
   { id: "filozofia", label: "Filozofia" },
 ];
 
+/** Wiersze poziomu podstawowego przypisane do przedmiotu wymaganego w rekrutacji. */
+export const SUBJECT_ALIAS: Partial<Record<SubjectId, SubjectId>> = {
+  "polski-podst": "polski",
+  "matematyka-podst": "matematyka",
+  "angielski-podst": "angielski",
+};
+
+/** Zwraca wszystkie identyfikatory wyników, które mogą pokryć dany przedmiot wymagany. */
+export function subjectVariants(subject: SubjectId): SubjectId[] {
+  const extra = (Object.keys(SUBJECT_ALIAS) as SubjectId[]).filter(
+    (alias) => SUBJECT_ALIAS[alias] === subject,
+  );
+  return [subject, ...extra];
+}
+
 export const SUBJECT_LABEL: Record<SubjectId, string> = SUBJECTS.reduce(
   (acc, s) => ({ ...acc, [s.id]: s.label }),
   {} as Record<SubjectId, string>,
 );
-
-export type Level = "podstawowy" | "rozszerzony";
 
 export type Requirement = {
   /** Główny przedmiot lub grupa przedmiotów do wyboru (liczy się najlepszy wynik). */

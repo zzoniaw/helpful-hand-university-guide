@@ -87,6 +87,8 @@ function MatchPage() {
             <h2 className="text-2xl text-primary">Wyniki matury</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Wpisz wynik w procentach i zaznacz poziom. Wypełnij tylko te przedmioty, które zdawałeś.
+              Polski, matematyka i angielski mają osobne pola dla podstawy i rozszerzenia — uczelnie
+              liczą oba wyniki.
             </p>
             <div className="mt-5 space-y-2.5">
               {SUBJECTS.map((subject) => {
@@ -94,24 +96,50 @@ function MatchPage() {
                 return (
                   <div
                     key={subject.id}
-                    className="flex flex-wrap items-center gap-3 rounded-xl bg-secondary/50 px-3 py-2"
+                    className={`flex flex-wrap items-center gap-3 rounded-xl border px-3 py-2 ${
+                      subject.highlight
+                        ? "surface-gold border shadow-soft"
+                        : "border-transparent bg-secondary/50"
+                    }`}
                   >
-                    <span className="min-w-40 flex-1 text-sm font-medium">{subject.label}</span>
+                    <span className="min-w-40 flex-1 text-sm font-medium">
+                      {subject.highlight ? (
+                        <span className="flex flex-wrap items-center gap-1.5">
+                          <Sparkles className="twinkle size-4 text-gold" />
+                          <span className="font-semibold">{subject.label}</span>
+                          <Star className="twinkle size-3 text-gold" style={{ animationDelay: "0.4s" }} />
+                          <Star className="twinkle size-2.5 text-gold" style={{ animationDelay: "0.9s" }} />
+                          {subject.note && (
+                            <span className="block w-full text-xs font-normal opacity-80">
+                              {subject.note}
+                            </span>
+                          )}
+                        </span>
+                      ) : (
+                        subject.label
+                      )}
+                    </span>
                     <div className="flex items-center gap-1.5">
-                      {(["podstawowy", "rozszerzony"] as Level[]).map((level) => (
-                        <button
-                          key={level}
-                          type="button"
-                          onClick={() => setScore(subject.id, entry?.score ?? 50, level)}
-                          className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
-                            entry?.level === level
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-background text-muted-foreground hover:text-primary"
-                          }`}
-                        >
-                          {level === "podstawowy" ? "podst." : "rozsz."}
-                        </button>
-                      ))}
+                      {subject.fixedLevel ? (
+                        <span className="rounded-md bg-primary px-2.5 py-1 text-xs font-semibold text-primary-foreground">
+                          {subject.fixedLevel === "podstawowy" ? "podst." : "rozsz."}
+                        </span>
+                      ) : (
+                        (["podstawowy", "rozszerzony"] as Level[]).map((level) => (
+                          <button
+                            key={level}
+                            type="button"
+                            onClick={() => setScore(subject.id, entry?.score ?? 50, level)}
+                            className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
+                              entry?.level === level
+                                ? "bg-primary text-primary-foreground"
+                                : "bg-background text-muted-foreground hover:text-primary"
+                            }`}
+                          >
+                            {level === "podstawowy" ? "podst." : "rozsz."}
+                          </button>
+                        ))
+                      )}
                       <input
                         type="number"
                         min={0}
@@ -120,7 +148,11 @@ function MatchPage() {
                         aria-label={`Wynik z ${subject.label} w procentach`}
                         value={entry?.score ?? ""}
                         onChange={(e) =>
-                          setScore(subject.id, e.target.value === "" ? null : Number(e.target.value))
+                          setScore(
+                            subject.id,
+                            e.target.value === "" ? null : Number(e.target.value),
+                            subject.fixedLevel,
+                          )
                         }
                         className="w-20 rounded-md border border-input bg-background px-2 py-1 text-sm outline-none focus:border-ring"
                       />

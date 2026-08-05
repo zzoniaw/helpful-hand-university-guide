@@ -1,7 +1,12 @@
+export type Level = "podstawowy" | "rozszerzony";
+
 export type SubjectId =
   | "polski"
+  | "polski-podst"
   | "matematyka"
+  | "matematyka-podst"
   | "angielski"
+  | "angielski-podst"
   | "biologia"
   | "chemia"
   | "fizyka"
@@ -12,12 +17,32 @@ export type SubjectId =
   | "niemiecki"
   | "hiszpanski"
   | "francuski"
-  | "filozofia";
+  | "filozofia"
+  | "biznes";
 
-export const SUBJECTS: { id: SubjectId; label: string }[] = [
-  { id: "polski", label: "Język polski" },
-  { id: "matematyka", label: "Matematyka" },
-  { id: "angielski", label: "Język angielski" },
+export type SubjectMeta = {
+  id: SubjectId;
+  label: string;
+  /** Wiersz z zablokowanym poziomem – dla przedmiotów obowiązkowych zdawanych na dwóch poziomach. */
+  fixedLevel?: Level;
+  /** Wyróżnienie graficzne (nowy przedmiot maturalny). */
+  highlight?: boolean;
+  note?: string;
+};
+
+export const SUBJECTS: SubjectMeta[] = [
+  { id: "polski", label: "Język polski – rozszerzenie", fixedLevel: "rozszerzony" },
+  { id: "polski-podst", label: "Język polski – podstawa", fixedLevel: "podstawowy" },
+  { id: "matematyka", label: "Matematyka – rozszerzenie", fixedLevel: "rozszerzony" },
+  { id: "matematyka-podst", label: "Matematyka – podstawa", fixedLevel: "podstawowy" },
+  { id: "angielski", label: "Język angielski – rozszerzenie", fixedLevel: "rozszerzony" },
+  { id: "angielski-podst", label: "Język angielski – podstawa", fixedLevel: "podstawowy" },
+  {
+    id: "biznes",
+    label: "Biznes i zarządzanie",
+    highlight: true,
+    note: "Nowy przedmiot maturalny od roku 2027/2028",
+  },
   { id: "biologia", label: "Biologia" },
   { id: "chemia", label: "Chemia" },
   { id: "fizyka", label: "Fizyka" },
@@ -31,12 +56,25 @@ export const SUBJECTS: { id: SubjectId; label: string }[] = [
   { id: "filozofia", label: "Filozofia" },
 ];
 
+/** Wiersze poziomu podstawowego przypisane do przedmiotu wymaganego w rekrutacji. */
+export const SUBJECT_ALIAS: Partial<Record<SubjectId, SubjectId>> = {
+  "polski-podst": "polski",
+  "matematyka-podst": "matematyka",
+  "angielski-podst": "angielski",
+};
+
+/** Zwraca wszystkie identyfikatory wyników, które mogą pokryć dany przedmiot wymagany. */
+export function subjectVariants(subject: SubjectId): SubjectId[] {
+  const extra = (Object.keys(SUBJECT_ALIAS) as SubjectId[]).filter(
+    (alias) => SUBJECT_ALIAS[alias] === subject,
+  );
+  return [subject, ...extra];
+}
+
 export const SUBJECT_LABEL: Record<SubjectId, string> = SUBJECTS.reduce(
   (acc, s) => ({ ...acc, [s.id]: s.label }),
   {} as Record<SubjectId, string>,
 );
-
-export type Level = "podstawowy" | "rozszerzony";
 
 export type Requirement = {
   /** Główny przedmiot lub grupa przedmiotów do wyboru (liczy się najlepszy wynik). */
@@ -469,7 +507,7 @@ export const UNIVERSITIES: University[] = [
         degree: "licencjackie",
         language: "polski",
         threshold: 76,
-        requirements: [req(["matematyka"], 0.45), req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.3, "rozszerzony", "język obcy"), req(["geografia", "wos", "informatyka", "historia"], 0.25, "rozszerzony", "geografia / WOS / informatyka / historia")],
+        requirements: [req(["matematyka"], 0.45), req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.3, "rozszerzony", "język obcy"), req(["geografia", "wos", "informatyka", "historia", "biznes"], 0.25, "rozszerzony", "geografia / WOS / informatyka / historia / biznes i zarządzanie")],
         careers: ["ekonomista", "analityk finansowy", "doradca", "bankowiec", "konsultant"],
         interests: ["biznes", "finanse", "analiza danych", "rynek", "przedsiębiorczość"],
         recommended: ["matematyka", "geografia", "angielski"],
@@ -484,7 +522,7 @@ export const UNIVERSITIES: University[] = [
         degree: "licencjackie",
         language: "polski",
         threshold: 79,
-        requirements: [req(["matematyka"], 0.5), req(["informatyka", "geografia", "wos"], 0.3, "rozszerzony", "informatyka / geografia / WOS"), req(["angielski"], 0.2)],
+        requirements: [req(["matematyka"], 0.5), req(["informatyka", "geografia", "wos", "biznes"], 0.3, "rozszerzony", "informatyka / geografia / WOS / biznes i zarządzanie"), req(["angielski"], 0.2)],
         careers: ["analityk danych", "data scientist", "konsultant", "ekonomista"],
         interests: ["dane", "statystyka", "biznes", "programowanie"],
         recommended: ["matematyka", "informatyka"],
@@ -656,7 +694,7 @@ export const UNIVERSITIES: University[] = [
         degree: "licencjackie",
         language: "polski / angielski",
         threshold: 55,
-        requirements: [req(["matematyka"], 0.35, "podstawowy"), req(["angielski"], 0.35), req(["geografia", "wos", "historia"], 0.3, "rozszerzony", "geografia / WOS / historia")],
+        requirements: [req(["matematyka"], 0.35, "podstawowy"), req(["angielski"], 0.35), req(["geografia", "wos", "historia", "biznes"], 0.3, "rozszerzony", "geografia / WOS / historia / biznes i zarządzanie")],
         careers: ["manager", "przedsiębiorca", "konsultant", "marketingowiec"],
         interests: ["biznes", "przedsiębiorczość", "marketing", "zarządzanie"],
         recommended: ["matematyka", "angielski", "geografia"],
@@ -780,7 +818,7 @@ export const UNIVERSITIES: University[] = [
         degree: "licencjackie (BSc)",
         language: "angielski",
         threshold: 65,
-        requirements: [req(["matematyka"], 0.4), req(["angielski"], 0.4), req(["geografia", "wos", "historia"], 0.2, "rozszerzony", "przedmiot społeczny")],
+        requirements: [req(["matematyka"], 0.4), req(["angielski"], 0.4), req(["geografia", "wos", "historia", "biznes"], 0.2, "rozszerzony", "przedmiot społeczny / biznes i zarządzanie")],
         careers: ["manager", "konsultant", "analityk", "przedsiębiorca"],
         interests: ["biznes", "międzynarodowe", "języki", "ekonomia"],
         recommended: ["matematyka", "angielski"],

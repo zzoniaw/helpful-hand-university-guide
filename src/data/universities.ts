@@ -122,6 +122,13 @@ export type Program = {
   rules: string;
   extras: string[];
   tuition: string;
+  /**
+   * Status uznawania nowego przedmiotu „biznes i zarządzanie” w rekrutacji:
+   * potwierdzony – wynika wprost z uchwały rekrutacyjnej (np. „dowolny przedmiot rozszerzony”),
+   * przewidywany – uczelnia nie opublikowała jeszcze listy przedmiotów na maturę 2027.
+   */
+  biznesStatus?: "potwierdzony" | "przewidywany";
+  biznesNote?: string;
 };
 
 export type University = {
@@ -134,6 +141,8 @@ export type University = {
   founded: number;
   students: string;
   website: string;
+  /** Strona główna uczelni (obok systemu rekrutacyjnego). */
+  homepage: string;
   about: string;
   admissionRules: string;
   extraPoints: string[];

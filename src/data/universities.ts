@@ -529,6 +529,9 @@ export const UNIVERSITIES: University[] = [
         rules: "Matematyka rozszerzona jest obowiązkowa. Silny nacisk na język obcy.",
         extras: ["Olimpiada Wiedzy Ekonomicznej", "Olimpiada Przedsiębiorczości"],
         tuition: "bezpłatne (studia stacjonarne)",
+        biznesStatus: "przewidywany",
+        biznesNote:
+          "Uchwała rekrutacyjna SGH wymienia obecnie zamkniętą listę przedmiotów do wyboru bez biznesu i zarządzania — przedmiot jest bardzo prawdopodobnym uzupełnieniem listy na maturę 2027, ale nie ma jeszcze oficjalnego potwierdzenia.",
       },
       {
         id: "sgh-analityka",
@@ -544,6 +547,9 @@ export const UNIVERSITIES: University[] = [
         rules: "Kierunek łączący ekonomię ze statystyką i programowaniem.",
         extras: ["Olimpiada Statystyczna", "Olimpiada Matematyczna"],
         tuition: "bezpłatne (studia stacjonarne)",
+        biznesStatus: "przewidywany",
+        biznesNote:
+          "Jak wyżej: lista przedmiotów kwalifikacyjnych SGH na rok 2027/2028 nie została jeszcze opublikowana.",
       },
     ],
   },
@@ -720,6 +726,9 @@ export const UNIVERSITIES: University[] = [
         rules: "Silny nacisk na język angielski i praktyczne projekty biznesowe.",
         extras: ["Olimpiada Przedsiębiorczości"],
         tuition: "ok. 16 000 zł / rok",
+        biznesStatus: "przewidywany",
+        biznesNote:
+          "Akademia Leona Koźmińskiego przelicza dowolny przedmiot z grupy społeczno-ekonomicznej, więc biznes i zarządzanie powinien być uznany — czekamy na oficjalny wykaz na 2027.",
       },
       {
         id: "alk-prawo",
@@ -847,6 +856,9 @@ export const UNIVERSITIES: University[] = [
         rules: "Studia w całości po angielsku, silnie międzynarodowe środowisko.",
         extras: ["IELTS 6.5+", "List motywacyjny"],
         tuition: "ok. 2 600 EUR / rok (UE)",
+        biznesStatus: "przewidywany",
+        biznesNote:
+          "Maastricht wymaga matematyki i angielskiego; trzeci przedmiot jest dowolny, więc biznes i zarządzanie będzie uznawany, ale uczelnia nie wymienia go jeszcze wprost.",
       },
       {
         id: "maastricht-psych",

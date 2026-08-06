@@ -63,14 +63,24 @@ function UniversityPage() {
               {businessPrograms.map((p) => p.name).join(", ")}
             </p>
           )}
-          <a
-            href={university.website}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-6 inline-flex items-center gap-1.5 rounded-lg bg-primary-foreground px-4 py-2 text-sm font-semibold text-primary"
-          >
-            System rekrutacyjny uczelni <ExternalLink className="size-4" />
-          </a>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              href={university.website}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-primary-foreground px-4 py-2 text-sm font-semibold text-primary"
+            >
+              System rekrutacyjny uczelni <ExternalLink className="size-4" />
+            </a>
+            <a
+              href={university.homepage}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-primary-foreground/40 px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10"
+            >
+              Strona główna uczelni <ExternalLink className="size-4" />
+            </a>
+          </div>
         </div>
       </section>
 

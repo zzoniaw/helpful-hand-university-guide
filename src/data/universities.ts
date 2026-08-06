@@ -325,10 +325,11 @@ export const UNIVERSITIES: University[] = [
     homepage: "https://www.pw.edu.pl",
     about: "Najlepsza polska uczelnia techniczna, ceniona przez pracodawców z branży inżynieryjnej i IT.",
     admissionRules:
-      "Liczba punktów rekrutacyjnych = 0,75 × M + 0,25 × (J), gdzie M to przedmiot kierunkowy i matematyka. Poziom rozszerzony jest wymagany na większości kierunków.",
+      "Punkty kwalifikacyjne PK = Wmat × Pmat + W × Pwyb + Wjo × Pjo, gdzie Pmat to matematyka, Pwyb — jeden przedmiot do wyboru (fizyka, informatyka, chemia, biologia — zależnie od kierunku), a Pjo — język obcy. Wynik zdany tylko na poziomie podstawowym mnoży się przez 0,5, więc rozszerzenie nie jest formalnie obowiązkowe, ale bez niego szanse są minimalne. Wydział Architektury ma odrębne zasady z egzaminem z rysunku. Źródło: „Zasady ustalania punktów kwalifikacyjnych 2025/2026”, pw.edu.pl.",
     extraPoints: [
       "Laureaci i finaliści olimpiad technicznych, matematycznych, fizycznych i informatycznych – maksymalna liczba punktów.",
       "Laureaci konkursów PW dla uczniów szkół średnich.",
+      "Punkty z dyplomu zawodowego (technik) mogą zastąpić przedmiot do wyboru na części kierunków.",
     ],
     programs: [
       {
@@ -338,11 +339,16 @@ export const UNIVERSITIES: University[] = [
         degree: "inżynierskie",
         language: "polski",
         threshold: 84,
-        requirements: [req(["matematyka"], 0.5), req(["fizyka", "informatyka"], 0.35, "rozszerzony", "fizyka / informatyka"), req(["angielski"], 0.15)],
+        requirements: [
+          req(["matematyka"], 0.45),
+          req(["fizyka", "informatyka", "chemia"], 0.35, "rozszerzony", "przedmiot do wyboru: fizyka / informatyka / chemia"),
+          req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.2, "rozszerzony", "język obcy nowożytny"),
+        ],
         careers: ["programista", "inżynier oprogramowania", "architekt systemów", "data engineer"],
         interests: ["programowanie", "technologia", "algorytmy", "AI", "systemy"],
         recommended: ["matematyka", "fizyka", "informatyka"],
-        rules: "Najwyższe progi na uczelni. Matematyka rozszerzona to podstawa kwalifikacji.",
+        rules:
+          "Jeden z najwyższych progów na uczelni (ostatnia osoba przyjęta ok. 146–200 pkt na skali PW). Podstawa to matematyka; wynik z poziomu podstawowego liczy się z połową wagi.",
         extras: ["Olimpiada Informatyczna", "Olimpiada Matematyczna", "Olimpiada Fizyczna"],
         tuition: "bezpłatne (studia stacjonarne)",
       },
@@ -353,7 +359,11 @@ export const UNIVERSITIES: University[] = [
         degree: "inżynierskie",
         language: "polski",
         threshold: 68,
-        requirements: [req(["matematyka"], 0.5), req(["fizyka"], 0.35), req(["angielski"], 0.15)],
+        requirements: [
+          req(["matematyka"], 0.45),
+          req(["fizyka", "informatyka"], 0.35, "rozszerzony", "przedmiot do wyboru: fizyka / informatyka"),
+          req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.2, "rozszerzony", "język obcy nowożytny"),
+        ],
         careers: ["inżynier", "konstruktor", "automatyk", "robotyk"],
         interests: ["robotyka", "maszyny", "fizyka", "projektowanie", "technologia"],
         recommended: ["matematyka", "fizyka"],
@@ -368,12 +378,15 @@ export const UNIVERSITIES: University[] = [
         degree: "inżynierskie",
         language: "polski",
         threshold: 70,
-        requirements: [req(["matematyka"], 0.35), req(["fizyka", "historia"], 0.15, "rozszerzony", "fizyka / historia"), req(["angielski"], 0.1)],
+        requirements: [
+          req(["matematyka", "matematyka-podst"], 0.3, "podstawowy", "matematyka (dowolny poziom)"),
+          req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.1, "rozszerzony", "język obcy nowożytny"),
+        ],
         careers: ["architekt", "urbanista", "projektant wnętrz"],
         interests: ["rysunek", "projektowanie", "sztuka", "przestrzeń", "budownictwo"],
         recommended: ["matematyka", "historia"],
         rules:
-          "Oprócz matury obowiązuje egzamin z rysunku odręcznego, który ma decydujący udział w wyniku końcowym. Warto zacząć kurs rysunku w klasie maturalnej.",
+          "Wydział Architektury ma odrębne zasady: decydujący udział ma dwuetapowy egzamin z rysunku odręcznego, a matura (matematyka i język obcy) ma znaczenie pomocnicze. Warto zacząć kurs rysunku w klasie maturalnej.",
         extras: ["Portfolio prac rysunkowych", "Olimpiada Wiedzy o Architekturze"],
         tuition: "bezpłatne (studia stacjonarne)",
       },
@@ -392,10 +405,11 @@ export const UNIVERSITIES: University[] = [
     homepage: "https://www.agh.edu.pl",
     about: "Uczelnia techniczna łącząca inżynierię, informatykę i nowe technologie z bardzo silnymi kontaktami z przemysłem.",
     admissionRules:
-      "Wskaźnik rekrutacyjny W = 4 × M + P, gdzie M to matematyka, a P przedmiot kierunkowy (fizyka, informatyka lub chemia) na poziomie rozszerzonym.",
+      "Wskaźnik rekrutacji WR = 4 × M + P1 + P2 + D (maks. 1000 pkt), gdzie M to matematyka na poziomie PODSTAWOWYM, P1 i P2 to przedmioty z części rozszerzonej wskazane w Tabeli 1 dla danego kierunku (m.in. fizyka, informatyka, chemia, biologia), a D to punkty dodatkowe za olimpiady i osiągnięcia. Źródło: rekrutacja.agh.edu.pl — zasady wyliczania wskaźnika rekrutacji.",
     extraPoints: [
       "Laureaci i finaliści olimpiad przedmiotowych – maksymalny wskaźnik rekrutacyjny.",
       "Laureaci konkursu „O Złoty Indeks AGH”.",
+      "Punkty dodatkowe D za osiągnięcia sportowe i wybrane aktywności (Tabela 3 i 4 uchwały).",
     ],
     programs: [
       {
@@ -405,11 +419,16 @@ export const UNIVERSITIES: University[] = [
         degree: "inżynierskie",
         language: "polski",
         threshold: 72,
-        requirements: [req(["matematyka"], 0.55), req(["fizyka", "informatyka"], 0.3, "rozszerzony", "fizyka / informatyka"), req(["angielski"], 0.15)],
+        requirements: [
+          req(["matematyka", "matematyka-podst"], 0.5, "podstawowy", "matematyka — do wskaźnika wchodzi poziom podstawowy (waga ×4)"),
+          req(["fizyka", "informatyka"], 0.3, "rozszerzony", "P1: fizyka / informatyka (poziom rozszerzony)"),
+          req(["chemia", "biologia", "geografia"], 0.2, "rozszerzony", "P2: drugi przedmiot z Tabeli 1 (chemia / biologia / geografia)"),
+        ],
         careers: ["inżynier", "robotyk", "automatyk", "programista systemów"],
         interests: ["robotyka", "automatyka", "programowanie", "maszyny"],
         recommended: ["matematyka", "fizyka", "informatyka"],
-        rules: "Kierunek z wysokim zapotrzebowaniem na rynku pracy, silny nacisk na matematykę.",
+        rules:
+          "Kierunek z wysokim zapotrzebowaniem na rynku pracy. W AGH matematyka liczona jest z poziomu podstawowego (z wagą ×4), a rozszerzenia wchodzą jako P1 i P2 — brak drugiego rozszerzenia obniża wynik, ale nie blokuje rekrutacji.",
         extras: ["Olimpiada Wiedzy Technicznej", "Zawody robotyczne"],
         tuition: "bezpłatne (studia stacjonarne)",
       },
@@ -420,7 +439,11 @@ export const UNIVERSITIES: University[] = [
         degree: "inżynierskie",
         language: "polski",
         threshold: 55,
-        requirements: [req(["matematyka"], 0.5), req(["chemia", "fizyka"], 0.35, "rozszerzony", "chemia / fizyka"), req(["angielski"], 0.15)],
+        requirements: [
+          req(["matematyka", "matematyka-podst"], 0.5, "podstawowy", "matematyka — poziom podstawowy (waga ×4)"),
+          req(["chemia", "fizyka"], 0.35, "rozszerzony", "P1: chemia / fizyka (poziom rozszerzony)"),
+          req(["biologia", "informatyka", "geografia"], 0.15, "rozszerzony", "P2: drugi przedmiot z Tabeli 1"),
+        ],
         careers: ["inżynier materiałowy", "technolog", "specjalista R&D"],
         interests: ["chemia", "materiały", "laboratorium", "przemysł"],
         recommended: ["chemia", "matematyka"],

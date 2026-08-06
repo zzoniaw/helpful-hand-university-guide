@@ -118,11 +118,17 @@ function UniversityPage() {
                 <div>
                   <h3 className="text-2xl text-primary">{program.name}</h3>
                   {acceptsBusiness(program.id) && (
-                    <span className="surface-gold mt-2 inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-semibold">
-                      <Sparkles className="twinkle size-3.5" />
-                      Biznes i zarządzanie (matura 2027/2028)
-                      <Star className="twinkle size-3" style={{ animationDelay: "0.6s" }} />
-                    </span>
+                    <div className="mt-2">
+                      <span className="surface-gold inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-semibold">
+                        <Sparkles className="twinkle size-3.5" />
+                        Biznes i zarządzanie (matura 2027/2028)
+                        {program.biznesStatus === "potwierdzony" ? " — potwierdzony" : " — przewidywany"}
+                        <Star className="twinkle size-3" style={{ animationDelay: "0.6s" }} />
+                      </span>
+                      {program.biznesNote && (
+                        <p className="mt-1.5 max-w-xl text-xs text-muted-foreground">{program.biznesNote}</p>
+                      )}
+                    </div>
                   )}
                   <p className="mt-1 text-sm text-muted-foreground">
                     {program.degree} · język: {program.language} · {program.tuition}

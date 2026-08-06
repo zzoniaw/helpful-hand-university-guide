@@ -532,10 +532,11 @@ export const UNIVERSITIES: University[] = [
     homepage: "https://www.sgh.waw.pl",
     about: "Najlepsza polska uczelnia ekonomiczna. Rekrutacja odbywa się na kierunek wybierany dopiero po pierwszym roku.",
     admissionRules:
-      "Kandydat wskazuje trzy przedmioty: matematykę (obowiązkowo), język obcy oraz jeden do wyboru. Za wynik rozszerzony przyznaje się do 100 punktów za przedmiot.",
+      "Rekrutacja jest wspólna dla całej uczelni (kierunek wybiera się po pierwszym roku) i opiera się na czterech przedmiotach: 1) matematyka albo fizyka na poziomie rozszerzonym, 2) drugi przedmiot rozszerzony do wyboru: geografia, historia, informatyka, wiedza o społeczeństwie, ekonomia albo fizyka (jeśli nie wskazano jej jako pierwszej), 3) język obcy nowożytny na poziomie rozszerzonym, 4) drugi język obcy (podstawowy lub rozszerzony). Za każdy przedmiot rozszerzony maks. 100 pkt (razem do 300 pkt + punkty za drugi język). Brak wyniku z danej kategorii nie dyskwalifikuje — po prostu nie daje punktów. Źródło: rekrutacja.sgh.waw.pl.",
     extraPoints: [
       "Laureaci Olimpiady Wiedzy Ekonomicznej, Matematycznej i Przedsiębiorczości – przyjęcie bez postępowania kwalifikacyjnego.",
       "Certyfikaty językowe honorowane zamiast wyniku z języka obcego.",
+      "Wynik z matury dwujęzycznej z języka obcego przeliczany korzystniej.",
     ],
     programs: [
       {
@@ -545,16 +546,19 @@ export const UNIVERSITIES: University[] = [
         degree: "licencjackie",
         language: "polski",
         threshold: 76,
-        requirements: [req(["matematyka"], 0.45), req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.3, "rozszerzony", "język obcy"), req(["geografia", "wos", "informatyka", "historia", "biznes"], 0.25, "rozszerzony", "geografia / WOS / informatyka / historia / biznes i zarządzanie")],
+        requirements: [
+          req(["matematyka", "fizyka"], 0.35, "rozszerzony", "przedmiot 1: matematyka albo fizyka (rozszerzenie)"),
+          req(["geografia", "historia", "informatyka", "wos", "fizyka"], 0.3, "rozszerzony", "przedmiot 2: geografia / historia / informatyka / WOS / ekonomia / fizyka"),
+          req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.25, "rozszerzony", "język obcy nowożytny (rozszerzenie)"),
+          req(["niemiecki", "hiszpanski", "francuski", "angielski-podst"], 0.1, "podstawowy", "drugi język obcy (podstawowy lub rozszerzony)"),
+        ],
         careers: ["ekonomista", "analityk finansowy", "doradca", "bankowiec", "konsultant"],
         interests: ["biznes", "finanse", "analiza danych", "rynek", "przedsiębiorczość"],
         recommended: ["matematyka", "geografia", "angielski"],
-        rules: "Matematyka rozszerzona jest obowiązkowa. Silny nacisk na język obcy.",
+        rules:
+          "Kwalifikacja obejmuje matematykę (lub fizykę) rozszerzoną, drugi przedmiot z zamkniętej listy, język obcy rozszerzony i drugi język obcy. Kierunek wybiera się po pierwszym roku studiów. UWAGA: obowiązująca uchwała SGH ma zamkniętą listę przedmiotów, na której NIE ma jeszcze biznesu i zarządzania — jest tam natomiast „ekonomia”.",
         extras: ["Olimpiada Wiedzy Ekonomicznej", "Olimpiada Przedsiębiorczości"],
         tuition: "bezpłatne (studia stacjonarne)",
-        biznesStatus: "przewidywany",
-        biznesNote:
-          "Uchwała rekrutacyjna SGH wymienia obecnie zamkniętą listę przedmiotów do wyboru bez biznesu i zarządzania — przedmiot jest bardzo prawdopodobnym uzupełnieniem listy na maturę 2027, ale nie ma jeszcze oficjalnego potwierdzenia.",
       },
       {
         id: "sgh-analityka",
@@ -563,16 +567,18 @@ export const UNIVERSITIES: University[] = [
         degree: "licencjackie",
         language: "polski",
         threshold: 79,
-        requirements: [req(["matematyka"], 0.5), req(["informatyka", "geografia", "wos", "biznes"], 0.3, "rozszerzony", "informatyka / geografia / WOS / biznes i zarządzanie"), req(["angielski"], 0.2)],
+        requirements: [
+          req(["matematyka", "fizyka"], 0.4, "rozszerzony", "przedmiot 1: matematyka albo fizyka (rozszerzenie)"),
+          req(["informatyka", "geografia", "wos", "historia"], 0.3, "rozszerzony", "przedmiot 2: informatyka / geografia / WOS / historia / ekonomia"),
+          req(["angielski", "niemiecki", "hiszpanski", "francuski"], 0.3, "rozszerzony", "język obcy nowożytny (rozszerzenie)"),
+        ],
         careers: ["analityk danych", "data scientist", "konsultant", "ekonomista"],
         interests: ["dane", "statystyka", "biznes", "programowanie"],
         recommended: ["matematyka", "informatyka"],
-        rules: "Kierunek łączący ekonomię ze statystyką i programowaniem.",
+        rules:
+          "Kierunek łączący ekonomię ze statystyką i programowaniem. Rekrutacja wspólna dla całej SGH — te same przedmioty co na pozostałych kierunkach.",
         extras: ["Olimpiada Statystyczna", "Olimpiada Matematyczna"],
         tuition: "bezpłatne (studia stacjonarne)",
-        biznesStatus: "przewidywany",
-        biznesNote:
-          "Jak wyżej: lista przedmiotów kwalifikacyjnych SGH na rok 2027/2028 nie została jeszcze opublikowana.",
       },
     ],
   },

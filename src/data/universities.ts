@@ -158,6 +158,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1816,
     students: "ok. 40 000",
     website: "https://irk.uw.edu.pl",
+    homepage: "https://www.uw.edu.pl",
     about:
       "Największy uniwersytet w Polsce, regularnie na czele krajowych rankingów. Bardzo szeroka oferta kierunków humanistycznych, społecznych i ścisłych.",
     admissionRules:
@@ -239,6 +240,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1364,
     students: "ok. 35 000",
     website: "https://irk.uj.edu.pl",
+    homepage: "https://www.uj.edu.pl",
     about:
       "Najstarsza polska uczelnia z bardzo mocnym Collegium Medicum oraz silnymi kierunkami humanistycznymi i przyrodniczymi.",
     admissionRules:
@@ -311,6 +313,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1915,
     students: "ok. 26 000",
     website: "https://rekrutacja.pw.edu.pl",
+    homepage: "https://www.pw.edu.pl",
     about: "Najlepsza polska uczelnia techniczna, ceniona przez pracodawców z branży inżynieryjnej i IT.",
     admissionRules:
       "Liczba punktów rekrutacyjnych = 0,75 × M + 0,25 × (J), gdzie M to przedmiot kierunkowy i matematyka. Poziom rozszerzony jest wymagany na większości kierunków.",
@@ -377,6 +380,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1919,
     students: "ok. 20 000",
     website: "https://rekrutacja.agh.edu.pl",
+    homepage: "https://www.agh.edu.pl",
     about: "Uczelnia techniczna łącząca inżynierię, informatykę i nowe technologie z bardzo silnymi kontaktami z przemysłem.",
     admissionRules:
       "Wskaźnik rekrutacyjny W = 4 × M + P, gdzie M to matematyka, a P przedmiot kierunkowy (fizyka, informatyka lub chemia) na poziomie rozszerzonym.",
@@ -427,6 +431,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1950,
     students: "ok. 9 000",
     website: "https://rekrutacja.wum.edu.pl",
+    homepage: "https://www.wum.edu.pl",
     about: "Największa polska uczelnia medyczna z rozbudowaną bazą kliniczną i kierunkami anglojęzycznymi.",
     admissionRules:
       "O przyjęciu decyduje suma punktów z biologii i chemii na poziomie rozszerzonym (na części kierunków także fizyki lub matematyki). Nie ma egzaminów wstępnych.",
@@ -492,6 +497,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1906,
     students: "ok. 10 000",
     website: "https://rekrutacja.sgh.waw.pl",
+    homepage: "https://www.sgh.waw.pl",
     about: "Najlepsza polska uczelnia ekonomiczna. Rekrutacja odbywa się na kierunek wybierany dopiero po pierwszym roku.",
     admissionRules:
       "Kandydat wskazuje trzy przedmioty: matematykę (obowiązkowo), język obcy oraz jeden do wyboru. Za wynik rozszerzony przyznaje się do 100 punktów za przedmiot.",
@@ -542,6 +548,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1919,
     students: "ok. 33 000",
     website: "https://rekrutacja.amu.edu.pl",
+    homepage: "https://amu.edu.pl",
     about: "Jeden z największych uniwersytetów w Polsce, ceniony za filologie, kierunki społeczne i geografię.",
     admissionRules:
       "Wynik rekrutacyjny to suma punktów z przedmiotów kierunkowych; poziom podstawowy przelicza się z wagą 0,5 wartości rozszerzenia.",
@@ -589,6 +596,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1904,
     students: "ok. 15 000",
     website: "https://rekrutacja.pg.edu.pl",
+    homepage: "https://pg.edu.pl",
     about: "Nowoczesna uczelnia techniczna nad morzem, mocna w informatyce, elektronice i oceanotechnice.",
     admissionRules: "Wynik = 0,45 × przedmiot kierunkowy + 0,35 × matematyka + 0,2 × język obcy (poziom rozszerzony).",
     extraPoints: ["Finaliści olimpiad technicznych i informatycznych – 100% punktów z przedmiotu kierunkowego."],
@@ -635,6 +643,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1996,
     students: "ok. 19 000",
     website: "https://rekrutacja.swps.pl",
+    homepage: "https://www.swps.pl",
     about: "Największa niepubliczna uczelnia społeczno-humanistyczna, znana z psychologii, projektowania i prawa.",
     admissionRules:
       "Rekrutacja bez progów punktowych – decyduje kolejność zgłoszeń i spełnienie minimalnych wymagań maturalnych. Na psychologii obowiązuje ranking wyników.",
@@ -682,6 +691,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1993,
     students: "ok. 9 000",
     website: "https://www.kozminski.edu.pl",
+    homepage: "https://www.kozminski.edu.pl",
     about: "Najlepsza niepubliczna uczelnia biznesowa w Polsce, wysoko notowana w rankingach Financial Times.",
     admissionRules:
       "Rekrutacja na podstawie wyników matury z trzech przedmiotów oraz testu z języka obcego. Obowiązuje ranking i limit miejsc.",
@@ -729,6 +739,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1945,
     students: "ok. 18 000",
     website: "https://irk.umk.pl",
+    homepage: "https://www.umk.pl",
     about: "Uniwersytet z pełną ofertą kierunków, w tym Collegium Medicum w Bydgoszczy.",
     admissionRules: "Kwalifikacja na podstawie wyników maturalnych z przedmiotów kierunkowych; poziom podstawowy z niższym mnożnikiem.",
     extraPoints: ["Laureaci olimpiad centralnych przyjmowani bez postępowania kwalifikacyjnego."],
@@ -775,6 +786,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1842,
     students: "ok. 27 000",
     website: "https://www.tudelft.nl",
+    homepage: "https://www.tudelft.nl",
     about: "Czołowa europejska uczelnia techniczna z anglojęzycznymi kierunkami inżynieryjnymi.",
     admissionRules:
       "Wymagana matura z matematyki i fizyki na poziomie rozszerzonym oraz potwierdzona znajomość angielskiego (IELTS 6.5 lub odpowiednik). Obowiązuje numerus fixus na części kierunków.",
@@ -807,6 +819,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1976,
     students: "ok. 22 000",
     website: "https://www.maastrichtuniversity.nl",
+    homepage: "https://www.maastrichtuniversity.nl",
     about: "Międzynarodowa uczelnia ucząca metodą Problem-Based Learning, popularna wśród Polaków.",
     admissionRules: "Wymagana matura z wybranymi przedmiotami rozszerzonymi i certyfikat językowy. Selekcja obejmuje list motywacyjny.",
     extraPoints: ["Certyfikat językowy (IELTS 6.5).", "Doświadczenie międzynarodowe i wolontariat."],
@@ -853,6 +866,7 @@ export const UNIVERSITIES: University[] = [
     founded: 1348,
     students: "ok. 50 000",
     website: "https://cuni.cz",
+    homepage: "https://cuni.cz",
     about: "Renomowana uczelnia w Czechach z anglojęzycznym kierunkiem lekarskim chętnie wybieranym przez Polaków.",
     admissionRules:
       "Rekrutacja na kierunek lekarski odbywa się na podstawie egzaminów wstępnych z biologii, chemii i fizyki – matura nie jest jedynym kryterium.",
